@@ -14,8 +14,9 @@ $fetchData = new newJob();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include_once 'view/titlename.php'; ?>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -89,6 +90,7 @@ $fetchData = new newJob();
                                         <a href="mid-process/job-app.process.php?statusID=1&compID='.$job['jobID'].'"><button type="button" class="btn btn-outline-success" title="Hired" name="status">H</button></a>
                                         <a href="mid-process/job-app.process.php?statusID=2&compID='.$job['jobID'].'"><button type="button" class="btn btn-outline-warning" title="Interview" name="status">I</button></a>
                                         <a href="mid-process/job-app.process.php?statusID=3&compID='.$job['jobID'].'"><button type="button" class="btn btn-outline-danger" title="Rejected" name="status">R</button></a>
+                                        <a href="mid-process/job-app.process.php?settingsID='.$job['jobID'].'"><button type="button" class="btn btn-outline-primary" title="Settings" name="status"><i class="bi bi-gear-fill"></i>   </button></a>
                                     </td>
                                 </tr> ';
                             }

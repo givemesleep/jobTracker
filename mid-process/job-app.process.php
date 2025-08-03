@@ -5,6 +5,8 @@ require_once "../model/db.class.php";
 require_once "../model/app.class.php";
 require_once "../controller/app.ctrl.php";
 
+
+//To ADD Job Application
 if(isset($_POST['new_job'])){
 //Issets
 $comp = $_POST['company'];
@@ -19,6 +21,8 @@ $newJob->addApplication();
 header("location: ../index.php");   
 }
 
+
+//TO Update Job Status
 if(isset($_GET['statusID']) && isset($_GET['compID'])){
     $statusID = $_GET['statusID']; 
     $userID = $_GET['compID'];
@@ -32,5 +36,17 @@ if(isset($_GET['statusID']) && isset($_GET['compID'])){
 
 
 }
+
+//To View Details for especific job
+if(isset($_GET['settingsID'])){
+    $compID = $_GET['settingsID'];
+
+    $jobDesc = new viewData($compID);
+    $jobDesc->viewJob();
+
+    // header("location: ../job-description.php");
+}
+
+
 
 ?>

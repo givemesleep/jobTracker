@@ -53,4 +53,19 @@ class updateCtrl extends newJob{
 }
 
 
+//View
+class viewData extends newJob{
+  private $ID; 
+
+  public function __construct($compid){
+    $this->ID = $compid;
+  }
+
+  public function viewJob(){
+
+    $this->viewDesc($this->ID);
+  }
+
+}
+
 ?>

@@ -33,6 +33,17 @@ class newJob extends dbconn {
         exit();
     }
 
+    public function viewDesc($compIDs){
+        $viewDesc = "SELECT * FROM job_app_list WHERE jobID = ?";
+        $descDE = array($compIDs);
+        $descSTMT = $this->connect()->prepare($viewDesc);
+        $descSTMT->execute($descDE);
+        $dataRet = $descSTMT->fetchAll();
+        
+        return $dataRet;
+        // header("location: ../job-description.php");
+        // exit();
+    }
 
     //DB Validation
 
