@@ -29,7 +29,7 @@ class newJob extends dbconn {
         $upSTMT = $this->connect()->prepare($upStats);
         $upSTMT->execute($upDE);
 
-        header('location: ../index.php');
+        header("location: ../job-description.php?compID=$compID");
         exit();
     }
 
@@ -38,7 +38,7 @@ class newJob extends dbconn {
         $descDE = array($compIDs);
         $descSTMT = $this->connect()->prepare($viewDesc);
         $descSTMT->execute($descDE);
-        $dataRet = $descSTMT->fetchAll();
+        $dataRet = $descSTMT->fetch();
         
         return $dataRet;
         // header("location: ../job-description.php");

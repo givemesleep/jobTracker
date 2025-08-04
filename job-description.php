@@ -4,7 +4,31 @@ require_once 'model/app.class.php';
 
 //Fetch Data
 $fetchData = new newJob();
-$details = $fetchData->viewDesc();
+$details = $fetchData->viewDesc($_GET['compID']);
+
+$jobID = $details['jobID'];
+$company = $details['company_name'];
+$dateApplied = date('F d, Y', strtotime($details['date_applied']));
+$jobStatus = $details['job_status'];
+$statusDesc;
+$rolePostion = $details['position'];
+$jobDesc = "No Description Set!" ?? "No Description Set!"; //Null Checker : if null Display Right, if not Display left.
+
+switch($jobStatus){
+    case 1:
+        $statusDesc = "<span class='text-success'>Hired</span>";
+    break;
+    case 2:
+        $statusDesc = "<span class='text-warning'>Interview</span>";
+    break;
+    case 3:
+        $statusDesc = "<span class='text-danger'>Rejected</span>";
+    break;
+    case 4:
+        $statusDesc = "<span class='text-secondary'>No Response</span>";
+    break;
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -37,7 +61,6 @@ $details = $fetchData->viewDesc();
                         <div class="col-md-12 text-end">
                             <a href="new-application.php"><button type="button" class="btn btn-outline-success"><i class="bi bi-pencil-square"></i></button></a>                            
                             <a href="index.php"><button type="button" class="btn btn-outline-primary"><i class="bi bi-house"></i></button></a>                            
-
                         </div>
 
                         <div class="col-md-4 mt-3">
@@ -45,8 +68,11 @@ $details = $fetchData->viewDesc();
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <h3><strong>Job Name</strong></h3>
-                                            <h6>Date Applied : </h6>
+                                            <h3><strong><?php echo $company; ?></strong></h3>
+                                            <h6>Date Applied : <?php echo $dateApplied; ?></h6>
+                                            <h6>Job Status : <?php echo $statusDesc; ?></h6>
+                                            <h6>Role/Position : <?php echo $rolePostion; ?></h6>
+                                            <h6>Salary : <?php echo ""; ?></h6>
                                         </div>
                                     </div>
                                 </div>
@@ -58,14 +84,24 @@ $details = $fetchData->viewDesc();
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <h6><strong>Job Description </strong></h6>
+                                            <h6><i class="bi bi-justify"></i>  <strong>Job Description </strong></h6>
                                         </div>
-                                        <div class="col-md-12 mt-5">
-                                            <h6>Full Description</h6>
+                                        <div class="col-md-12 mt-4">
+                                            <h6><?php echo $jobDesc; ?></h6>
+                                        </div>
+                                        <div class="col-md-12 mt-3">
+                                            <h6><strong></strong></h6>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="col-md-4 mt-3">
+                            <h6><i class="bi bi-gear-fill text-primary"></i> <strong>Configure Status</strong></h6>
+                            <a href="mid-process/job-app.process.php?statusID=1&compID=<?php echo $jobID; ?>"><button type="button" class="btn btn-outline-success" title="Hired" name="status">Hired</button></a>
+                            <a href="mid-process/job-app.process.php?statusID=2&compID=<?php echo $jobID; ?>"><button type="button" class="btn btn-outline-warning" title="Interview" name="status">Interview</button></a>
+                            <a href="mid-process/job-app.process.php?statusID=3&compID=<?php echo $jobID; ?>"><button type="button" class="btn btn-outline-danger" title="Rejected" name="status">Reject</button></a>
                         </div>
 
                     </div>

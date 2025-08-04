@@ -44,7 +44,7 @@ if(isset($_GET['settingsID'])){
     $jobDesc = new viewData($compID);
     $jobDesc->viewJob();
 
-    // header("location: ../job-description.php");
+    header("location: ../job-description.php?compID=$compID");
 }
 
 

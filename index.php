@@ -87,9 +87,6 @@ $fetchData = new newJob();
                                     <td>'.$formatDate.'</td>
                                     <td class="'.$newClass.'">'.$status.'</td>
                                     <td class="text-center">
-                                        <a href="mid-process/job-app.process.php?statusID=1&compID='.$job['jobID'].'"><button type="button" class="btn btn-outline-success" title="Hired" name="status">H</button></a>
-                                        <a href="mid-process/job-app.process.php?statusID=2&compID='.$job['jobID'].'"><button type="button" class="btn btn-outline-warning" title="Interview" name="status">I</button></a>
-                                        <a href="mid-process/job-app.process.php?statusID=3&compID='.$job['jobID'].'"><button type="button" class="btn btn-outline-danger" title="Rejected" name="status">R</button></a>
                                         <a href="mid-process/job-app.process.php?settingsID='.$job['jobID'].'"><button type="button" class="btn btn-outline-primary" title="Settings" name="status"><i class="bi bi-gear-fill"></i>   </button></a>
                                     </td>
                                 </tr> ';
