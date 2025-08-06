@@ -5,14 +5,17 @@ require_once 'model/app.class.php';
 //Fetch Data
 $fetchData = new newJob();
 $details = $fetchData->viewDesc($_GET['compID']);
+$jobDescs = $fetchData->viewJobDesc($_GET['compID']);
 
 $jobID = $details['jobID'];
 $company = $details['company_name'];
 $dateApplied = date('F d, Y', strtotime($details['date_applied']));
 $jobStatus = $details['job_status'];
-$statusDesc;
+$statusDesc; 
 $rolePostion = $details['position'];
-$jobDesc = "No Description Set!" ?? "No Description Set!"; //Null Checker : if null Display Right, if not Display left.
+
+$description = $jobDescs['job_desc'] ?? $jobDescs;
+$monSal = $jobDescs['job_salary'] ?? $jobDescs;
 
 switch($jobStatus){
     case 1:
@@ -72,7 +75,7 @@ switch($jobStatus){
                                             <h6>Date Applied : <?php echo $dateApplied; ?></h6>
                                             <h6>Job Status : <?php echo $statusDesc; ?></h6>
                                             <h6>Role/Position : <?php echo $rolePostion; ?></h6>
-                                            <h6>Salary : <?php echo ""; ?></h6>
+                                            <h6>Salary : <?php echo $monSal; ?></h6>
                                         </div>
                                     </div>
                                 </div>
@@ -87,7 +90,7 @@ switch($jobStatus){
                                             <h6><i class="bi bi-justify"></i>  <strong>Job Description </strong></h6>
                                         </div>
                                         <div class="col-md-12 mt-4">
-                                            <h6><?php echo $jobDesc; ?></h6>
+                                            <h6><?php echo $description; ?></h6>
                                         </div>
                                         <div class="col-md-12 mt-3">
                                             <h6><strong></strong></h6>

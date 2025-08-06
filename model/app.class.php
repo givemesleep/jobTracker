@@ -45,6 +45,25 @@ class newJob extends dbconn {
         // exit();
     }
 
+    public function viewJobDesc($jobDescID){
+        $info = "No Information Found!";
+        
+        $desc = "SELECT * FROM job_descriptions WHERE jobID = ?";
+        $descsDE = array($jobDescID);
+        $descSTMT = $this->connect()->prepare($desc);
+        $descSTMT->execute($descsDE);
+
+        $countRes = $descSTMT->rowCount();
+        $dataRes = $descSTMT->fetch();
+        if($countRes == 0 || $countRes == null){
+            return $info;
+        }else{
+            return $dataRes;
+        }
+
+
+    }
+
     //DB Validation
 
     // public function ifCompanyExist($companyName){
