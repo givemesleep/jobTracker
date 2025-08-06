@@ -89,8 +89,8 @@ class newJob extends dbconn {
 
         }elseif($RES['isEdit'] == 1 && $ROW > 0){
             
-            $descSQL = "UPDATE job_descriptions SET job_desc = ?, SET job_salary = ? WHERE jobID = ? AND isEdit = 1";
-            $descDE = array($jobID, $jobDesc, $jobSal);
+            $descSQL = "UPDATE job_descriptions SET job_desc = ?, job_salary = ? WHERE jobID = ? AND isEdit = 1";
+            $descDE = array( $jobDesc, $jobSal, $jobID);
             $descSTMT = $this->connect()->prepare($descSQL);
             $descSTMT->execute($descDE);
 
