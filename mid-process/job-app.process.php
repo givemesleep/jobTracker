@@ -47,6 +47,14 @@ if(isset($_GET['settingsID'])){
     header("location: ../job-description.php?compID=$compID");
 }
 
+if(isset($_POST['job_desc'])){
+    $jobID = $_POST['jobIDs'];
+    $descript = $_POST['description'];
+    $salary = $_POST['salaries'];
+
+    $jobDescs = new addDescription($jobID, $descript, $salary);
+    $jobDescs->addDescription();
+}
 
 
 ?>

@@ -62,7 +62,7 @@ switch($jobStatus){
                     <div class="row">
                         
                         <div class="col-md-12 text-end">
-                            <a href="new-application.php"><button type="button" class="btn btn-outline-success"><i class="bi bi-pencil-square"></i></button></a>                            
+                            <a href="add-description.php?compID=<?php echo $_GET['compID'] ?>"><button type="button" class="btn btn-outline-success"><i class="bi bi-pencil-square"></i></button></a>                            
                             <a href="index.php"><button type="button" class="btn btn-outline-primary"><i class="bi bi-house"></i></button></a>                            
                         </div>
 

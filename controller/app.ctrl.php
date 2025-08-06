@@ -68,4 +68,23 @@ class viewData extends newJob{
 
 }
 
+class addDescription extends newJob{
+
+  private $jobID;
+  private $jobDesc;
+  private $jobSala;
+
+  public function __construct( $jobID, $jobDesc, $jobSala ){
+    $this->jobID = $jobID;
+    $this->jobDesc = $jobDesc;
+    $this->jobSala = $jobSala;
+  }
+
+  public function addDescription(){
+
+    $this->addJobDesc($this->jobID, $this->jobDesc, $this->jobSala);
+  }
+
+}
+
 ?>
