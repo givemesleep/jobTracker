@@ -65,14 +65,45 @@ class newJob extends dbconn {
     }
 
     public function addJobDesc($jobID, $jobDesc, $jobSal){
-        $descSQL = "INSERT INTO job_descriptions(jobID, job_desc, job_salary)
-                        VALUES(?,?,?)";
-        $descDE = array($jobID, $jobDesc, $jobSal);
-        $descSTMT = $this->connect()->prepare($descSQL);
-        $descSTMT->execute($descDE);
 
-        header("location: ../job-description.php?compID=$jobID");
-        exit();
+        //Improved Code Here
+
+        $SQL = "SELECT * FROM job_descriptions WHERE jobID = ?";
+        $DE = array($jobID);
+        $STMT = $this->connect()->prepare($SQL);
+        $STMT->execute($DE);
+
+        $ROW = $STMT->rowCount();
+        $RES = $STMT->fetch();
+        
+        if($RES['isEdit'] == 0 && $ROW == 0){
+
+            $descSQL = "INSERT INTO job_descriptions(jobID, job_desc, job_salary, isEdit)
+                        VALUES(?,?,?,1)";
+            $descDE = array($jobID, $jobDesc, $jobSal);
+            $descSTMT = $this->connect()->prepare($descSQL);
+            $descSTMT->execute($descDE);
+
+            header("location: ../job-description.php?compID=$jobID");
+            exit();
+
+        }elseif($RES['isEdit'] == 1 && $ROW > 0){
+            
+            $descSQL = "UPDATE job_descriptions SET job_desc = ?, SET job_salary = ? WHERE jobID = ? AND isEdit = 1";
+            $descDE = array($jobID, $jobDesc, $jobSal);
+            $descSTMT = $this->connect()->prepare($descSQL);
+            $descSTMT->execute($descDE);
+
+            header("location: ../job-description.php?compID=$jobID");
+            exit();
+
+        }else{
+            if($jobID == null || $jobDesc == null || $jobSal == null){
+                header("location: ../index.php?Err=Entries_Empty");
+            }
+        }
+
+
     }
 
     //DB Validation
